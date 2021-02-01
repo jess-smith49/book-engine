@@ -1,11 +1,11 @@
 //import & typeDefs
 const {qgl} = require('apollo-server-express');
 
-const typeDefs = gql``
+const typeDefs = gql`
     type Query {
-
-    }
-;
+        
+    }`
+   
 
 
 
