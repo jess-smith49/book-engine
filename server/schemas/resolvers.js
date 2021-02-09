@@ -35,16 +35,24 @@ const resolvers = {
 
         saveBook: async (parent, {book}, context) => {
             if(context.book){
-                const savedBook = await User.findOneAndUpdate(
+                const updateUserBook = await User.findOneAndUpdate(
                     {_id: context.user._id},
                     {$addToSet: {book: book}},
                     {new: true}
                 )
+            return updateUserBook;
             }
         },
 
         removeBook: async(parent, {bookId}, context) => {
-
+            if(context.book){
+                const updateUserBook = await User.findOneAndUpdate(
+                    {_id: context.user._id},
+                    {$pull: {book: bookId}},
+                    {new: true}
+                )
+            return updateUserBook;
+            }
         }
 
     } 
