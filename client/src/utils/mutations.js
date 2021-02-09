@@ -38,7 +38,6 @@ export const SAVE_BOOK = gql`
             }
             
         }
-    
 `;
 
 //returning User type
