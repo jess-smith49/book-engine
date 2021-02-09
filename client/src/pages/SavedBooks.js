@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useQuery } from 'react';
+import React, { useState, useEffect, useQuery, useMutation} from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
 
-import { getMe, deleteBook } from '../utils/API';
+//import { getMe, deleteBook } from '../utils/API';
 import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
 
@@ -12,11 +12,15 @@ import {REMOVE_BOOK} from '../utils/mutations';
 const SavedBooks = () => {
   const [userData, setUserData] = useState({});
 
+  //***QUERY AND MUTATION SET UP */
+  const {} = useQuery(GET_ME);
+  const[removeBook, {error}] = useMutation(REMOVE_BOOK);
+
   // use this to determine if `useEffect()` hook needs to run again
   const userDataLength = Object.keys(userData).length;
-  
+
 //replaced useEffect with useQuery******
-  useQuery(() => {
+  useEffect(() => {
     const getUserData = async () => {
       try {
         const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -50,7 +54,10 @@ const SavedBooks = () => {
     }
 
     try {
-      const response = await deleteBook(bookId, token);
+      //const response = await deleteBook(bookId, token);
+      const {userData} = await removeBook({
+        variables: {bookId}
+      })
 
       if (!response.ok) {
         throw new Error('something went wrong!');
