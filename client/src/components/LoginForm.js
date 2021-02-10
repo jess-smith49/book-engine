@@ -1,5 +1,5 @@
 // see SignupForm.js for comments
-import React, { useState, useMutation } from 'react';
+import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import {useMutation} from '@apollo/react-hooks'
 
@@ -32,7 +32,7 @@ const LoginForm = () => {
 
     try {
       //const response = await loginUser(userFormData);
-      const {data} = await loginUser({
+      const {response} = await loginUser({
         variables: {...userFormData}
       })
 

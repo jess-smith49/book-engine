@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useQuery, useMutation} from 'react';
+import React, { useState, useEffect, useQuery} from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
 
 import {useMutation} from '@apollo/react-hooks'
@@ -57,7 +57,7 @@ const SavedBooks = () => {
 
     try {
       //const response = await deleteBook(bookId, token);
-      const {userData} = await removeBook({
+      const {response} = await removeBook({
         variables: {bookId}
       })
 
